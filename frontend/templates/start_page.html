@@ -1,0 +1,7 @@
+{% extends 'base_page.html' %}
+{% block title %} Weather in Moscow {% endblock %}
+{% block content %}
+<p>This application using <a title="https://www.metaweather.com/api/" href="https://www.metaweather.com/api/">API</a> gets data about <b>weather in Moscow for current month</b> and store it into database.<br>
+Outputs the data from the database by date (the date is set) in form of a table and sort them by created in ascending order.<br>
+The data is updated on demand (by clicking on the Data update button).</p>
+{% endblock %}

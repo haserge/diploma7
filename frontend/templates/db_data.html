@@ -1,0 +1,27 @@
+{% extends 'start_page.html' %}
+{% block title %} Data received from database {% endblock %}
+{% block content %}
+
+<h4>{% block first_line %} Data received from database: {{date_time}} {% endblock %}</h4>
+<table border="1" bgcolor="#F3F2F2">
+    <tr>
+        <td>#</td>
+        <td>id</td>
+        <td>weather state name</td>
+        <td>wind direction compass</td>
+        <td>created</td>
+        <td>applicable date</td>
+        <td>min temp</td>
+        <td>max temp</td>
+        <td>the temp</td>
+    </tr>
+<tr></tr>
+{% for item in data %}
+<tr><td>{{data.index(item)+1}}</td>
+    {% for column in range(8) %}
+    <td>{{item[column]}}</td>
+    {% endfor %}
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

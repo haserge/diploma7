@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: backend
+  name: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - image: haserge/backend:1
+        name: backend
+        ports:
+        - containerPort: 5000
+        env:
+          - name: DATABASE_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: database-config
+                key: database
+          - name: DATABASE_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: database-config
+                key: host
+          - name: DATABASE_USER
+            valueFrom:
+              secretKeyRef:
+                name: database-credentials
+                key: user    
+          - name: USER_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: database-credentials 
+                key: password
+      initContainers:
+      - name: init-database
+        image: haserge/init:1
+        env:
+          - name: DATABASE_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: database-config
+                key: host

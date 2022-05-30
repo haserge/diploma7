@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Testing </title>
+    <style>
+    p {
+     font-style: italic;
+     font-size: 14pt;
+      }
+    a {
+     text-decoration : none
+      }
+    </style>
+</head>
+<body>
+<a href="{{ url_for('start_page') }}">Back to start page</a>
+<br>
+<p>
+    To test the process of getting updates you can delete the latest forecast for today from the database (by clicking on the button).
+</p>
+ <form method="post">
+                <button type="submit" onclick="return confirm('Are you sure you want to delete last forecast for today?')">
+                    Delete the latest forecast for today</button>
+            </form>
+<br>
+{{info}}
+</body>
+</html>
